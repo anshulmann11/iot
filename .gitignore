@@ -1,0 +1,37 @@
+# Dependency directories
+node_modules/
+
+# Environment variables file (if you're using a .env file)
+.env
+
+# Log files
+logs/
+*.log
+
+# Output of 'npm pack'
+*.tgz
+
+# Editor or IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+# Mac specific files
+.DS_Store
+
+# Windows thumbnail files
+Thumbs.db
+
+# Compiled binary addons (if you're using native modules)
+build/
+
+# Ignore npm-debug.log (uncomment if it exists)
+# npm-debug.log
+
+# Optional: include a lock file to prevent inconsistencies
+package-lock.json
+yarn.lock
