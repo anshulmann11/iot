@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
   });
   
 
-app.post('/switchOn', (req,res)=>{
+app.get('/switchOn', (req,res)=>{
     res.json('switch is now ON')
 })
 
