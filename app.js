@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
   });
   
 
+app.post('/switchOn', (req,res)=>{
+    res.json('switch is now ON')
+})
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
