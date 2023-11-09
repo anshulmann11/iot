@@ -30,16 +30,16 @@ app.post('/tempchange', (req,res)=>{
 })
 
 
-app.post('switchOff', (req,res)=>{
+app.post('/switchOff', (req,res)=>{
   res.json("switch is off ")
 })
 
-app.post('alert', (req,res)=>{
+app.post('/alert', (req,res)=>{
   const {message} = req.body
   res.json("your alert is noted " + message)
 })
 
-app.post('set-temp-range', (req,res)=>{
+app.post('/set-temp-range', (req,res)=>{
   res.json("the temp range is set ")
 })
 
