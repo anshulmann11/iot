@@ -42,10 +42,10 @@ app.post("/set-temp-range", (req, res) => {
   res.json("the temp range is set ");
 });
 
-app.get("/uploads/:filename", (req, res) => {
+app.get("/uploads", (req, res) => {
   try {
     const fileName = req.params.filename;
-    const filePath = path.join(__dirname, "uploads", fileName);
+    const filePath = path.join(__dirname, "upload", "text.txt");
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
 
     res.download(filePath);
