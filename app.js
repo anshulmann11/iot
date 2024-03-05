@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors());
-
+app.timeout = 600000;
 app.get("/", (req, res) => {
   res.json("Hello, World!");
 });
