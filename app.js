@@ -42,9 +42,13 @@ app.post("/set-temp-range", (req, res) => {
 });
 
 app.get("/uploads/:filename", (req, res) => {
-  const fileName = req.params.filename;
-  const filePath = path.join(__dirname, "uploads", fileName);
-  res.sendFile(filePath);
+  try {
+    const fileName = req.params.filename;
+    const filePath = path.join(__dirname, "uploads", fileName);
+    res.sendFile(filePath);
+  } catch (err) {
+    res.send(err);
+  }
 });
 
 app.listen(port, () => {
