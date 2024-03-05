@@ -46,9 +46,11 @@ app.get("/uploads/:filename", (req, res) => {
   try {
     const fileName = req.params.filename;
     const filePath = path.join(__dirname, "upload", fileName);
+    const fileStream = fs.createReadStream(filePath);
+
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
 
-    res.download(filePath);
+    fileStream.pipe(res);
   } catch (err) {
     res.send(err);
   }
