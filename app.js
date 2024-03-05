@@ -48,7 +48,7 @@ app.get("/uploads/:filename", (req, res) => {
     const filePath = path.join(__dirname, "uploads", fileName);
     res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
 
-    res.sendFile(filePath);
+    res.download(filePath);
   } catch (err) {
     res.send(err);
   }
