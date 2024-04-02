@@ -56,6 +56,8 @@ app.get("/uploads/:filename", (req, res) => {
   }
 });
 
+// dummy comment
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
