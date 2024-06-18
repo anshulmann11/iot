@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const axios = require("axios");
+const fs = require("fs");
 const path = require("path");
 
 // Define routes and middleware here
@@ -55,6 +57,84 @@ app.get("/uploads/:filename", (req, res) => {
     res.send(err);
   }
 });
+const getUrl = () => {
+  const config = JSON.parse(fs.readFileSync("config.json"));
+  return config.url;
+};
+
+// Update the URL in config.json
+const setUrl = (url) => {
+  const config = { url };
+  fs.writeFileSync("config.json", JSON.stringify(config));
+};
+
+// API endpoint to fetch the configured URL
+app.get("/get-url", (req, res) => {
+  const url = getUrl();
+  res.json({ url });
+});
+
+// API endpoint to set the URL
+app.post("/set-url", (req, res) => {
+  const { url } = req.body;
+  setUrl(url);
+  res.json({ message: "URL updated successfully" });
+});
+
+let sendingInterval;
+
+// API endpoint to start sending data at a specified interval
+app.post("/start-sending", (req, res) => {
+  const { interval, temperatureRange, humidityRange, windSpeedRange } =
+    req.body;
+
+  // Validate the ranges
+  if (
+    !isValidRange(temperatureRange) ||
+    !isValidRange(humidityRange) ||
+    !isValidRange(windSpeedRange)
+  ) {
+    return res.status(400).json({ error: "Invalid range values" });
+  }
+
+  // Clear any existing interval
+  clearInterval(sendingInterval);
+
+  // Start sending data at the specified interval
+  sendingInterval = setInterval(async () => {
+    try {
+      const url = getUrl();
+      const data = {
+        temperature: getRandomValueInRange(temperatureRange),
+        humidity: getRandomValueInRange(humidityRange),
+        windSpeed: getRandomValueInRange(windSpeedRange),
+      };
+      await axios.post(url, data);
+      console.log("Data sent successfully");
+    } catch (error) {
+      console.error("Error sending data:", error);
+    }
+  }, interval);
+
+  res.json({ message: "Data sending started" });
+});
+
+// API endpoint to stop sending data
+app.post("/stop-sending", (req, res) => {
+  clearInterval(sendingInterval);
+  console.log("Stopped Sending Data");
+  res.json({ message: "Data sending stopped" });
+});
+
+// Helper function to check if a range is valid
+const isValidRange = (range) => {
+  return Array.isArray(range) && range.length === 2 && range[0] <= range[1];
+};
+
+// Helper function to generate a random value within a range
+const getRandomValueInRange = (range) => {
+  return Math.random() * (range[1] - range[0]) + range[0];
+};
 
 // dummy comment
 
