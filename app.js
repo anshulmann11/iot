@@ -58,7 +58,7 @@ app.get("/uploads/:filename", (req, res) => {
   }
 });
 const getUrl = () => {
-  const config = require("./config2.json");
+  const config = JSON.parse(fs.readFileSync("config2.json"));
   return config.url;
 };
 
