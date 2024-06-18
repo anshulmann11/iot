@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3010;
 const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
@@ -58,8 +58,8 @@ app.get("/uploads/:filename", (req, res) => {
   }
 });
 const getUrl = () => {
-  const config = require("./config2.json");
-  return config.url;
+  // const config = require("./config2.json");
+  return "http://dmp-tata.orbiwise.com:8301/device-path-access/h3tqWQ930I0bcvL9YgTpCi1hl2OaaFp2WKzSHnmHL2evG0bTrS9l";
 };
 
 // Update the URL in config.json
