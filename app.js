@@ -26,7 +26,7 @@ app.post("/switchOn", (req, res) => {
 
 app.post("/tempchange", (req, res) => {
   const { newValue } = req.body;
-  if (newVaule) res.json(`temp is changes to ${newValue}`);
+  if (newValue) res.json(`temp is changed to ${newValue}`);
 });
 
 app.post("/switchOff", (req, res) => {
