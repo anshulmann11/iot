@@ -58,14 +58,14 @@ app.get("/uploads/:filename", (req, res) => {
   }
 });
 const getUrl = () => {
-  const config = JSON.parse(fs.readFileSync("config.json"));
+  const config = JSON.parse(fs.readFileSync("config2.json"));
   return config.url;
 };
 
 // Update the URL in config.json
 const setUrl = (url) => {
   const config = { url };
-  fs.writeFileSync("config.json", JSON.stringify(config));
+  fs.writeFileSync("config2.json", JSON.stringify(config));
 };
 
 // API endpoint to fetch the configured URL
