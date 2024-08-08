@@ -225,7 +225,12 @@ app.post("/application-data", async (req, res) => {
     ...req.body,
   });
 });
-
+app.post("/application-data/rest/callback/payloads/ul", async (req, res) => {
+  res.json({
+    message: "received data",
+    ...req.body,
+  });
+});
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
